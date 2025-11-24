@@ -85,6 +85,17 @@
     <dependency>
       <groupId>com.google.api-client</groupId>
       <artifactId>google-api-client-jackson2</artifactId>
+      <exclusions>
+         <exclusion>
+             <groupId>com.fasterxml.jackson.core</groupId>
+             <artifactId>jackson-core</artifactId>
+         </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-core</artifactId>
+      <version>2.15.2</version>      
     </dependency>
     <dependency>
       <groupId>com.google.guava</groupId>
@@ -247,6 +258,14 @@
                     <exclude>*.json</exclude>
                     <exclude>google/**</exclude>
                     <exclude>grpc/**</exclude>
+                  </excludes>
+                </filter>
+                <filter>
+                  <artifact>com.fasterxml.jackson.core:*</artifact>
+                  <excludes>
+                    <exclude>META-INF/versions/11/**</exclude>
+                    <exclude>META-INF/versions/17/**</exclude>
+                    <exclude>META-INF/versions/19/**</exclude>
                   </excludes>
                 </filter>
               </filters>
