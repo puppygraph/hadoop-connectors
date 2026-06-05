@@ -247,6 +247,12 @@
                   </includes>
                 </filter>
                 <filter>
+                  <artifact>io.netty:*</artifact>
+                  <includes>
+                    <include>**</include>
+                  </includes>
+                </filter>
+                <filter>
                   <artifact>io.opencensus:*</artifact>
                   <includes>
                     <include>**</include>
@@ -284,6 +290,7 @@
                   <include>com.google.protobuf</include>
                   <include>com.google.storage.v2</include>
                   <include>io.grpc</include>
+                  <include>io.netty</include>
                   <include>io.opencensus</include>
                   <include>io.perfmark</include>
                   <include>org.apache.httpcomponents</include>
@@ -318,20 +325,12 @@
                     <exclude>com.google.cloud.hadoop.util.AutoValue_AccessBoundary</exclude>
                   </excludes>
                 </relocation>
-                <!-- Take special care of grpc-netty-shaded, it uses the package
-                     io.grpc.netty.shaded.io.grpc.netty, which will cause the
-                     ServicesResourceTransformer to replace both occurrences of io.grpc -->
-                <relocation>
-                  <pattern>io.grpc.netty.shaded</pattern>
-                  <shadedPattern>
-                    com.google.cloud.hadoop.repackaged.bigquery.io.grpc.netty.shaded
-                  </shadedPattern>
-                </relocation>
                 <relocation>
                   <pattern>io</pattern>
                   <shadedPattern>com.google.cloud.hadoop.repackaged.bigquery.io</shadedPattern>
                   <includes>
                     <include>io.grpc.**</include>
+                    <include>io.netty.**</include>
                     <include>io.opencensus.**</include>
                     <include>io.perfmark.**</include>
                   </includes>
@@ -348,18 +347,6 @@
                     <include>org.joda.**</include>
                     <include>org.threeten.**</include>
                   </includes>
-                </relocation>
-                <relocation>
-                  <pattern>META-INF/native/io_grpc_netty_shaded_</pattern>
-                  <shadedPattern>
-                    META-INF/native/com_google_cloud_hadoop_repackaged_bigquery_io_grpc_netty_shaded_
-                  </shadedPattern>
-                </relocation>
-                <relocation>
-                  <pattern>META-INF/native/libio_grpc_netty_shaded_</pattern>
-                  <shadedPattern>
-                    META-INF/native/libcom_google_cloud_hadoop_repackaged_bigquery_io_grpc_netty_shaded_
-                  </shadedPattern>
                 </relocation>
               </relocations>
               <shadedArtifactAttached>true</shadedArtifactAttached>
